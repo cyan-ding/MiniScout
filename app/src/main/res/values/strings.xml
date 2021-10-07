@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MiniScout</string>
+    <string name="match_number">Match Number</string>
+    <string name="team_number">Team Number</string>
+    <string name="start">Start</string>
+
+
 </resources>
