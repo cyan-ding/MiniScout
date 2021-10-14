@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+
+        android:id="@+id/ll_information_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/layout_margin"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_match_number"
+            style="@style/tv_horizontal_black"
+            android:layout_weight="1"
+            android:text="@string/match_number" />
+
+        <View style="@style/view_standard_vertical_separator" />
+
+        <TextView
+            android:id="@+id/tv_timer_display"
+            style="@style/tv_horizontal_black"
+            android:layout_weight="1" />
+
+        <View style="@style/view_standard_vertical_separator"/>
+
+        <TextView
+            android:id="@+id/tv_team_number"
+
+            style="@style/tv_horizontal_black"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/team_number" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ll_information_bar"
+        android:orientation="vertical">
+
+        <View style="@style/view_standard_horizontal_separator" />
+
+
+        <TextView
+            style="@style/tv_standard_gray"
+            android:layout_weight="2"
+            android:text="Placement Type One" />
+
+        <Button
+            style="@style/btn_standard_white"
+            android:layout_weight="2"
+            android:hint="@string/btn_placement_one"
+            android:id="@+id/btn_placement_one"
+            android:onClick="placementOneOnClick"
+            />
+
+        <View
+            android:layout_height="@dimen/medium_text_size"
+            android:layout_width="@dimen/weighted" />
+
+        <Button
+            style="@style/btn_standard_white"
+            android:layout_weight="2"
+            android:hint="@string/btn_placement_two"
+            android:id="@+id/btn_placement_two"
+            android:onClick="placementTwoOnClick"
+            />
+
+        <View
+            android:layout_width="@dimen/weighted"
+            android:layout_height="@dimen/standard_margin"/>
+
+        <TextView
+            style="@style/tv_standard_gray"
+            android:layout_weight="2"
+            android:text="INCAP" />
+
+        <Button
+            style="@style/btn_standard_white"
+            android:layout_weight="2"
+            android:text="INCAP"
+            android:id="@+id/btn_incap"
+            android:onClick="incapOnClick"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/layout_margin"/>
+
+        <Button
+            style="@style/btn_standard_white"
+            android:layout_weight="2"
+            android:text="SUBMIT"
+            android:id="@+id/btn_submit"
+            android:onClick="submitOnClick"
+            />
+
+        <View
+            android:layout_height="@dimen/standard_margin"
+            android:layout_width="@dimen/weighted"/>
+
+
+
+    </LinearLayout>
+
+    </RelativeLayout>
+

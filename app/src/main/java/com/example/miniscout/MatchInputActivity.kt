@@ -41,7 +41,7 @@ class MatchInputActivity : AppCompatActivity() {
         if (isEditTextNotEmpty(listOf(et_match_number,et_team_number))) {
         intent.putExtra(match_tag, Gson().toJson(Match(getTeamNumber(), getMatchNumber())))
             Log.e("match_data","${Gson().fromJson(intent.extras!!.get(match_tag).toString(), Match::class.java)}")
-        startActivity(Intent(this, ScoutingActivity::class.java))
+        startActivity(intent)
 
         }
     }
