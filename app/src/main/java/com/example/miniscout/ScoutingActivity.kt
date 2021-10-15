@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import androidx.core.content.ContextCompat
+import com.example.miniscout.bestpackage.MatchTimer
 
 import com.google.gson.Gson
 
@@ -19,6 +20,7 @@ class ScoutingActivity : Activity() {
         setContentView(R.layout.scouting_activity)
         retrieveMatchData()
         initScoutingSetup()
+        MatchTimer(this, 30000,tv_timer_display).start()
     }
 
     private fun retrieveMatchData() {
@@ -84,6 +86,7 @@ class ScoutingActivity : Activity() {
         }
 
     }
+
 }
 
 

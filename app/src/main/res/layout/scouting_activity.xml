@@ -13,6 +13,7 @@
         <TextView
             android:id="@+id/tv_match_number"
             style="@style/tv_horizontal_black"
+            android:layout_height="130dp"
             android:layout_weight="1"
             android:text="@string/match_number" />
 
@@ -21,7 +22,8 @@
         <TextView
             android:id="@+id/tv_timer_display"
             style="@style/tv_horizontal_black"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            />
 
         <View style="@style/view_standard_vertical_separator"/>
 
