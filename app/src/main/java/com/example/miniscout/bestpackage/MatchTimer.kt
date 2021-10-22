@@ -15,6 +15,13 @@ class MatchTimer(
     millisInFuture: Long,
     private val tv_timer_display: TextView
 ) : CountDownTimer(millisInFuture, 1000) {
+    var timeMS: Long? = null
+    fun getTimeMS(): Long {
+        timeMS?.let {
+            return it
+        }
+        return 0
+    }
 
     private fun convMillis(millisUntilFinished: Long): String {
         return (millisUntilFinished / 1000).toString()
@@ -22,7 +29,7 @@ class MatchTimer(
 
     override fun onTick(millisUntilFinished: Long) {
         tv_timer_display.text = convMillis(millisUntilFinished).toString()
-
+        timeMS = millisUntilFinished
     }
 
     override fun onFinish() {
