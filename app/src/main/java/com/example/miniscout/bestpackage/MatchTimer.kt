@@ -11,17 +11,19 @@ import com.example.miniscout.R
 
 
 class MatchTimer(
-    private var context: Context,
+
+    var context: Context,
     millisInFuture: Long,
     private val tv_timer_display: TextView
 ) : CountDownTimer(millisInFuture, 1000) {
-    var timeMS: Long? = null
+    var timeMS: Long? = 0
     fun getTimeMS(): Long {
         timeMS?.let {
             return it
         }
         return 0
     }
+    var isFinish: Boolean = true
 
     private fun convMillis(millisUntilFinished: Long): String {
         return (millisUntilFinished / 1000).toString()
@@ -35,5 +37,6 @@ class MatchTimer(
     override fun onFinish() {
         tv_timer_display.setTextColor(ContextCompat.getColor(context, R.color.red))
         tv_timer_display.text = "Done"
+
     }
 }

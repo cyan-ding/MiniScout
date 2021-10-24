@@ -1,6 +1,7 @@
 package com.example.miniscout
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -10,9 +11,12 @@ import androidx.core.graphics.drawable.toDrawable
 import com.example.miniscout.bestpackage.MatchTimer
 
 import com.google.gson.Gson
+import kotlinx.android.synthetic.main.match_input_activity.*
 
 
 import kotlinx.android.synthetic.main.scouting_activity.*
+import kotlinx.android.synthetic.main.scouting_activity.tv_match_number
+import kotlinx.android.synthetic.main.scouting_activity.tv_team_number
 import java.util.*
 
 
@@ -45,15 +49,27 @@ class ScoutingActivity : Activity() {
             getString(R.string.btn_placement_two, match.elementTwoCount.toString())
         btn_placement_one.setOnLongClickListener {
             match.elementOneCount--
-
+            Timeline.TimelineEntry(
+                Timeline.ActionType.Placement1,
+                timer.getTimeMS(),
+                match.elementOneCount)
             updateButtonLabel(btn_placement_one, R.string.btn_placement_one, match.elementOneCount)
+            Log.e("RemovePlacement1", match.elementOneCount.toString())
             return@setOnLongClickListener true
+
 
         }
         btn_placement_two.setOnLongClickListener {
             match.elementTwoCount--
+            Timeline.TimelineEntry(
+                Timeline.ActionType.Placement2,
+                timer.getTimeMS(),
+                match.elementTwoCount)
             updateButtonLabel(btn_placement_two, R.string.btn_placement_two, match.elementTwoCount)
+            Log.e("RemovePlacement2", match.elementTwoCount.toString())
             return@setOnLongClickListener true
+
+
         }
 
 
@@ -64,11 +80,12 @@ class ScoutingActivity : Activity() {
         updateButtonLabel(btn_placement_one, R.string.btn_placement_one, match.elementOneCount)
         timeline.timeline.add(
             Timeline.TimelineEntry(
-                Timeline.ActionType.Placement,
+                Timeline.ActionType.Placement1,
                 timer.getTimeMS(),
                 match.elementOneCount
             )
         )
+         Log.e("AddPlacement1", match.elementOneCount.toString())
     }
 
     fun placementTwoOnClick(view: View) {
@@ -76,11 +93,12 @@ class ScoutingActivity : Activity() {
         updateButtonLabel(btn_placement_two, R.string.btn_placement_two, match.elementTwoCount)
         timeline.timeline.add(
             Timeline.TimelineEntry(
-                Timeline.ActionType.Placement,
+                Timeline.ActionType.Placement2,
                 timer.getTimeMS(),
                 match.elementTwoCount
             )
         )
+        Log.e("AddPlacement2", match.elementTwoCount.toString())
     }
 
      fun incapOnClick(view: View) {
@@ -103,10 +121,23 @@ class ScoutingActivity : Activity() {
 
 
     }
+    fun getTeamNumber(): String {
+        return et_team_number.text.toString()
+    }
+
+    fun getMatchNumber(): String {
+        return et_match_number.text.toString()
+    }
 
     fun submitOnClick(view: View) {
         Log.e("teamnumber", match.teamNumber)
         Log.e("timeline", timeline.timeline.toString() )
+        if (timer.isFinish) {
+             intent = Intent(this,PostSubmitActivity::class.java)
+            intent.putExtra(match_tag, Gson().toJson(Match(getTeamNumber(), getMatchNumber())))
+
+            startActivity(intent)
+        }
 
 
     }

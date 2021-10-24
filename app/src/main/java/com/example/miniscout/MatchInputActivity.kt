@@ -10,7 +10,7 @@ import android.util.Log
 import android.widget.EditText
 
 lateinit var intent:Intent
-public var match_tag = "Match"
+var match_tag = "Match"
 
 class MatchInputActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

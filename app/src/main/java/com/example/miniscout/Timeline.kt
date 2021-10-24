@@ -22,8 +22,11 @@ class Timeline(team: String) {
     }
 
     enum class ActionType {
-        Placement,
+        Placement1,
+        Placement2,
         Incap
+
+        
     }
 
     fun getTeam(team: String): String {
