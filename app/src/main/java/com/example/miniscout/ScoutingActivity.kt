@@ -9,7 +9,6 @@ import android.widget.Button
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toDrawable
 import com.example.miniscout.bestpackage.MatchTimer
-
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.match_input_activity.*
 
@@ -134,7 +133,7 @@ class ScoutingActivity : Activity() {
         Log.e("timeline", timeline.timeline.toString() )
         if (timer.isFinish) {
              intent = Intent(this,PostSubmitActivity::class.java)
-            intent.putExtra(match_tag, Gson().toJson(Match(getTeamNumber(), getMatchNumber())))
+            intent.putExtra(match_tag, Gson().toJson(match))
 
             startActivity(intent)
         }
