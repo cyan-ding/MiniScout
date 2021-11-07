@@ -7,12 +7,9 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.toDrawable
 import com.example.miniscout.bestpackage.MatchTimer
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.match_input_activity.*
-
-
 import kotlinx.android.synthetic.main.scouting_activity.*
 import kotlinx.android.synthetic.main.scouting_activity.tv_match_number
 import kotlinx.android.synthetic.main.scouting_activity.tv_team_number
@@ -20,16 +17,16 @@ import java.util.*
 
 
 class ScoutingActivity : Activity() {
-    lateinit var match: Match
-    lateinit var timer: MatchTimer
-    lateinit var timeline: Timeline
+    private lateinit var match: Match
+    private lateinit var timer: MatchTimer
+    private lateinit var timeline: Timeline
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.scouting_activity)
         retrieveMatchData()
         initScoutingSetup()
-        timer = MatchTimer(this, 30000,tv_timer_display)
+        timer = MatchTimer(this, 5000,tv_timer_display)
         timeline = Timeline(match.teamNumber)
         timer.start()
 
@@ -120,21 +117,14 @@ class ScoutingActivity : Activity() {
 
 
     }
-    fun getTeamNumber(): String {
-        return et_team_number.text.toString()
-    }
 
-    fun getMatchNumber(): String {
-        return et_match_number.text.toString()
-    }
 
     fun submitOnClick(view: View) {
-        Log.e("teamnumber", match.teamNumber)
+        Log.e("team number", match.teamNumber)
         Log.e("timeline", timeline.timeline.toString() )
+        intent = Intent(this,PostSubmitActivity::class.java)
         if (timer.isFinish) {
-             intent = Intent(this,PostSubmitActivity::class.java)
             intent.putExtra(match_tag, Gson().toJson(match))
-
             startActivity(intent)
         }
 
